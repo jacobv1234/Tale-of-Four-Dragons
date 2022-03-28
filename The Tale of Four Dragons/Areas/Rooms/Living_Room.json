@@ -1,0 +1,86 @@
+{
+    "flag":{
+        "name": "livingroomhatchopen",
+        "maintextif0": [
+            "A place to sit and relax, the living room.",
+            "Under the rug is a hatch that hasn't been opened in years.",
+            "If only there was a way to pry it open..."
+        ],
+        "optionsif0": [
+            "North",
+            "West",
+            "---",
+            "---",
+            "---",
+            "Items"
+        ],
+        "maintextif1": [
+            "The living room, now with a giant hole.",
+            "Not so relaxing now, but at least there's sofas.",
+            "You put the rug over it, but it fell down the hole."
+        ],
+        "optionsif1": [
+            "North",
+            "West",
+            "Hatch",
+            "---",
+            "---",
+            "Items"
+        ]
+    },
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "North": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,-15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "SW_Forest",
+        "NewRoomFolder": "Rooms"
+    },
+
+    "West": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [-15,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Lower_Hall",
+        "NewRoomFolder": "Rooms"
+    },
+
+    "Hatch": {
+        "popup": "Good thing there's a ladder.",
+        "startgraphicswap": "None",
+        "move1": [0,30,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "House_Basement",
+        "NewRoomFolder": "Rooms"
+    },
+
+    "Crowbar": {
+        "popup": "You use the Crowbar.",
+        "maintextupdate": [
+            "It doesn't take much effort to open the hatch.",
+            "You can now explore what lies under your house.",
+            "Gold? Monsters? Or just an abandoned basement?"
+        ],
+        "flagtoupdate": "livingroomhatchopen",
+        "startgraphicswap": "None",
+        "move1": [0,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "House_Kitchen",
+        "NewRoomFolder": "Rooms"
+    }
+}

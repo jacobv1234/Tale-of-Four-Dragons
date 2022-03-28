@@ -1,0 +1,67 @@
+{
+    "flag":{
+        "name": "unclerescued",
+        "maintextif0": [
+            "The forest opens out to the south, but that",
+            "doesn't matter at the moment. What matters is",
+            "rescuing your uncle."
+        ],
+        "optionsif0": [
+            "North",
+            "South",
+            "West",
+            "---",
+            "---",
+            "Items"
+        ],
+        "maintextif1": [
+            "Now the darkness is gone from the forest, the",
+            "clearing to the south feels... magical.",
+            "Like you are supposed to be there, somehow."
+        ],
+        "optionsif1": [
+            "North",
+            "South",
+            "West",
+            "---",
+            "---",
+            "Items"
+        ]
+    },
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "North": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,-15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "E_Forest",
+        "NewRoomFolder": "Rooms"
+    },
+    "South": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Forest_Clearing",
+        "NewRoomFolder": "Rooms"
+    },
+    "West": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [-15,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "S_Forest",
+        "NewRoomFolder": "Rooms"
+    }
+}

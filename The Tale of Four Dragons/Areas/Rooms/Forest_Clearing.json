@@ -1,0 +1,78 @@
+{
+    "flag":{
+        "name": "allpearlsgot",
+        "maintextif0": [
+            "There is a calming feeling in this area.",
+            "Peace is bliss.",
+            "A voice echoes out to you..."
+        ],
+        "optionsif0": [
+            "North",
+            "---",
+            "---",
+            "---",
+            "Listen",
+            "Items"
+        ],
+        "maintextif1": [
+            "The pearls glisten beautifully in the sun.",
+            "You know they serve a bigger purpose,",
+            "but what?"
+        ],
+        "optionsif1": [
+            "North",
+            "---",
+            "---",
+            "---",
+            "Pearls",
+            "Items"
+        ]
+    },
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "North": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,-15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "SE_Forest",
+        "NewRoomFolder": "Rooms"
+    },
+    "Listen": {
+        "popup": "You listen to the voice...",
+        "maintextupdate": [
+            "\"Bring me the Six Pearls of Life.",
+            "They are guarded by shop owners across the land.",
+            "You shall be rewarded for your efforts\""
+        ],
+        "startgraphicswap": "None",
+        "move1": [0,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Forest_Clearing",
+        "NewRoomFolder": "Rooms"
+    },
+    "Pearls": {
+        "popup": "You hold the Pearls high.",
+        "maintextupdate": [
+            "\"Congratulations, young one. Now, your reward.",
+            "Show me your might and prove yourself worthy,",
+            "and I will give you a weapon beyond human power.\""
+        ],
+        "forcedencounter": "Courage_Test",
+        "startgraphicswap": "None",
+        "move1": [0,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "House_Kitchen",
+        "NewRoomFolder": "Rooms"
+    }
+}

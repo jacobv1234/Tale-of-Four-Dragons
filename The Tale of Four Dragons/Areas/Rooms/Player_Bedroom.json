@@ -1,0 +1,42 @@
+{
+    "maintext": [
+        "This is your bedroom.",
+        "You can rest here in your bed if you need to.",
+        "You think about the adventures you will have as you continue."
+    ],
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "options": [
+        "South",
+        "Rest",
+        "---",
+        "---",
+        "---",
+        "Items"
+    ],
+    "South": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Upper_Hall",
+        "NewRoomFolder": "Rooms"
+    },
+    "Rest": {
+        "popup": "You rest for a few hours.",
+        "startgraphicswap": "None",
+        "move1": [0,0,1,2],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Player_Bedroom",
+        "NewRoomFolder": "Rooms"
+    }
+
+}

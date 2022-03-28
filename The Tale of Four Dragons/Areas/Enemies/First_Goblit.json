@@ -1,0 +1,22 @@
+{
+    "Name" : "Goblit",
+    "Health" : 25,
+    "MinDmg" : 10,
+    "MaxDmg" : 15,
+    "FleeChance" : 0,
+    "Text" : [
+        [
+            "\"Defeat that awful thing!",
+            "Bash it with your weapon and use block",
+            "to reduce damage taken."
+        ]
+
+    ],
+    "Rewards" : {
+        "MinGold" : 50,
+        "MaxGold" : 50,
+        "MinExp" : 5,
+        "MaxExp" : 10,
+        "flag" : "unclerescued"
+    }
+}
