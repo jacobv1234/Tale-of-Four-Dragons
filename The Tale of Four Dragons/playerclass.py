@@ -24,7 +24,7 @@ class Player():
                 self.level += 1
 
     def takedamage(self, basedamage):
-        self.hp -= (basedamage - (5*self.level))
+        self.hp -= basedamage
         if self.hp < 0:
             self.hp = 0
 
@@ -53,9 +53,9 @@ class Player():
         self.maxmagic += increase
 
     def levelup(self):
-        self.maxhp += 50
-        player.hp += 10000
-        player.magic += 10000
+        self.boostmaxhp(50)
+        self.heal(10000)
+        self.magicrestore(10000)
 
     def addmoney(self,money):
         self.money += money

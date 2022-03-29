@@ -406,20 +406,62 @@ def enemy_encounter(enemy):
         choice = getplayerchoice(['Bash','Block','Flee','---','---','Items'])
         ###add here choice effects###
         if choice == 'Bash':
-            slash = [c.create_image(250,180,image = slashimg, anchor = 'nw'),c.create_image(240,170,image = slashimg, anchor = 'nw'),c.create_image(230,160,image = slashimg, anchor = 'nw'),c.create_image(220,150,image = slashimg, anchor = 'nw'),c.create_image(210,140,image = slashimg, anchor = 'nw'),c.create_image(200,130,image = slashimg, anchor = 'nw')]
+            slash0 = c.create_image(250,180,image = slashimg, anchor = 'nw',state='hidden')
+            slash1 = c.create_image(240,170,image = slashimg, anchor = 'nw',state='hidden')
+            slash2 = c.create_image(230,160,image = slashimg, anchor = 'nw',state='hidden')
+            slash3 = c.create_image(220,150,image = slashimg, anchor = 'nw',state='hidden')
+            slash4 = c.create_image(210,140,image = slashimg, anchor = 'nw',state='hidden')
+            slash5 = c.create_image(200,130,image = slashimg, anchor = 'nw',state='hidden')
+            slash = [slash0,slash1,slash2,slash3,slash4,slash5]
             for j in range(47):
-                print(j)
                 for i in range(6):
                     c.move(slash[i],5,5)
                     window.update()
                     if j % 2 == 0 and j <= 10:
-                        c.itemconfig(slash[(j)/2],state='normal')
+                        indexvalue = j / 2
+                        c.itemconfig(slash[int(indexvalue)],state='normal')
                         window.update()
                     if j % 2 == 0 and j >= 36:
-                        c.itemconfig(slash[(j-36)/2],state='hidden')
+                        indexvalue = (j - 36) / 2
+                        c.itemconfig(slash[int(indexvalue)],state='hidden')
                         window.update()
-                    window.update()
-                    sleep(0.01)
+                window.update()
+                sleep(0.01)
+            if player.weapon == 'None':
+                mindmg = 6
+                maxdmg = 10
+            elif player.weapon == 'Knife':
+                mindmg = 9
+                maxdmg = 14
+            damage_dealt = randint(mindmg,maxdmg)
+            popup('The ' + enemyjson['Name'] + ' takes ' + str(damage_dealt) + ' damage!')
+            enemyjson['Health'] -= damage_dealt
+        
+
+        if enemyjson['Health'] <= 0:
+                popup('The ' + enemyjson['Name'] + ' was defeated.')
+                victory = True
+                break
+        
+        sleep(1)
+        attackoptions = enemyjson['Attacks']['options']
+        attackused = attackoptions[randint(0,len(attackoptions)-1)]
+        popup('The ' + enemyjson['Name'] + attackused)
+        attackdata = enemyjson['Attacks'][attackused]
+        damage = randint(attackdata['MinDmg'],attackdata['MaxDmg'])
+        lines = []
+        for i in range(540):
+            if i % 2 == 0:
+                lines.append(c.create_line(150,i,555,i,fill='black'))
+        window.update()
+        sleep(0.1)
+        for i in range(270):
+            c.delete(lines[0])
+            del lines[0]
+        player.takedamage(damage)
+        update_stats()
+        popup('You take ' + str(damage) + ' damage.')
+            
                     
 ##mainloop##
 addtoinv('Health Potion - x 0')
@@ -507,7 +549,7 @@ while True:
             try:
                 enemy_encounter(room[choice]['forcedencounter'])
             except:
-                pass
+                h = 0/0
                     
             move_player(room[choice]['move1'][0],room[choice]['move1'][1],room[choice]['move1'][2],room[choice]['move1'][3])
             if room[choice]['move2'][0] != 'None':

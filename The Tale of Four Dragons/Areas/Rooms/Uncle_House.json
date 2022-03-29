@@ -41,7 +41,7 @@
         "move2": ["None"],
         "move3": ["None"],
         "endgraphicswap": "None",
-        "NewRoom": "SE_Forest",
+        "NewRoom": "E_Forest",
         "NewRoomFolder": "Rooms"
     },
     "Help": {
