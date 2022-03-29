@@ -383,6 +383,9 @@ enemygraphics = {
         'First_Goblit' : PhotoImage(file = 'Graphics/Enemy/First_Goblit.gif')
     }
 
+##other images##
+slashimg = PhotoImage(file = 'Graphics/slash.gif')
+
 ##fight system##
 def enemy_encounter(enemy):
     global player
@@ -402,7 +405,22 @@ def enemy_encounter(enemy):
         chatbox(texttodisplay)
         choice = getplayerchoice(['Bash','Block','Flee','---','---','Items'])
         ###add here choice effects###
-
+        if choice == 'Bash':
+            slash = [c.create_image(250,180,image = slashimg, anchor = 'nw'),c.create_image(240,170,image = slashimg, anchor = 'nw'),c.create_image(230,160,image = slashimg, anchor = 'nw'),c.create_image(220,150,image = slashimg, anchor = 'nw'),c.create_image(210,140,image = slashimg, anchor = 'nw'),c.create_image(200,130,image = slashimg, anchor = 'nw')]
+            for j in range(47):
+                print(j)
+                for i in range(6):
+                    c.move(slash[i],5,5)
+                    window.update()
+                    if j % 2 == 0 and j <= 10:
+                        c.itemconfig(slash[(j)/2],state='normal')
+                        window.update()
+                    if j % 2 == 0 and j >= 36:
+                        c.itemconfig(slash[(j-36)/2],state='hidden')
+                        window.update()
+                    window.update()
+                    sleep(0.01)
+                    
 ##mainloop##
 addtoinv('Health Potion - x 0')
 addtoinv('Magic Potion - x 0')
@@ -423,10 +441,10 @@ flags = {
     'swordcouragegot': 0
     }
 
-file = open('Areas/Rooms/Game_Entry.json')
+file = open('Areas/Rooms/Uncle_House.json')
 room = json.load(file)
 file.close()
-room_name = 'Game_Entry'
+room_name = 'Uncle_House'
 room_folder = 'Rooms'
 
 while True:
