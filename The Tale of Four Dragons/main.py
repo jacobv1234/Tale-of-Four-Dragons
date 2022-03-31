@@ -393,6 +393,7 @@ def enemy_encounter(enemy):
     enemyjson = json.load(enemyfile)
     enemyfile.close()
     victory = False
+    fled = False
     sprite = enemygraphics[enemy]
     background = c.create_image(150,-540, image = sprite, anchor = 'nw')
     for i in range(54):
@@ -400,11 +401,13 @@ def enemy_encounter(enemy):
         window.update()
         sleep(0.01)
     popup('The ' + enemyjson['Name'] + ' appears!')
-    while player.hp > 0 and victory == False:
+    while player.hp > 0 and victory == False and not fled:
+        ##player turn##
         texttodisplay = enemyjson['Text'][randint(0,len(enemyjson['Text'])-1)]
         chatbox(texttodisplay)
         choice = getplayerchoice(['Bash','Block','Flee','---','---','Items'])
         ###add here choice effects###
+        defence = 1 #defence works as a damage multiplier - 0.5 means you take 50% damage for example
         if choice == 'Bash':
             slash0 = c.create_image(250,180,image = slashimg, anchor = 'nw',state='hidden')
             slash1 = c.create_image(240,170,image = slashimg, anchor = 'nw',state='hidden')
@@ -436,19 +439,33 @@ def enemy_encounter(enemy):
             damage_dealt = randint(mindmg,maxdmg)
             popup('The ' + enemyjson['Name'] + ' takes ' + str(damage_dealt) + ' damage!')
             enemyjson['Health'] -= damage_dealt
+
+        elif choice == 'Block':
+            popup('You brace for impact.')
+            defence = 0.75
         
+        elif choice == 'Flee':
+            if enemyjson['FleeChance'] == 0:
+                popup('Cannot run!')
+            elif randint(1,100) <= enemyjson['FleeChance']:
+                popup('Got away successfully!')
+                fled = True
+            
 
         if enemyjson['Health'] <= 0:
                 popup('The ' + enemyjson['Name'] + ' was defeated.')
                 victory = True
                 break
-        
+
+
+        ##enemy turn##
+        chatbox(['','',''])
         sleep(1)
         attackoptions = enemyjson['Attacks']['options']
         attackused = attackoptions[randint(0,len(attackoptions)-1)]
         popup('The ' + enemyjson['Name'] + attackused)
         attackdata = enemyjson['Attacks'][attackused]
-        damage = randint(attackdata['MinDmg'],attackdata['MaxDmg'])
+        damage = int(round(randint(attackdata['MinDmg'],attackdata['MaxDmg']) * defence, 0))
         lines = []
         for i in range(540):
             if i % 2 == 0:
@@ -461,6 +478,25 @@ def enemy_encounter(enemy):
         player.takedamage(damage)
         update_stats()
         popup('You take ' + str(damage) + ' damage.')
+
+    ##rewards##
+    if victory:
+        expgain = randint(enemyjson['Rewards']['MinExp'],enemyjson['Rewards']['MaxExp'])
+        goldgain = randint(enemyjson['Rewards']['MinGold'],enemyjson['Rewards']['MaxGold'])
+        chatbox(['You win!', 'You gain ' + str(expgain) + ' EXP and ' + str(goldgain) + ' gold.', ''])
+        player.addexp(expgain)
+        player.addmoney(goldgain)
+        sleep(1)
+        try:
+            flags[enemyjson['Rewards']['flag']] = 1
+        except:
+            pass
+    
+    elif player.hp <= 0:
+        popup('You lose...')
+    
+    update_stats()
+    c.delete(background)
             
                     
 ##mainloop##
@@ -483,10 +519,10 @@ flags = {
     'swordcouragegot': 0
     }
 
-file = open('Areas/Rooms/Uncle_House.json')
+file = open('Areas/Rooms/Game_Entry.json')
 room = json.load(file)
 file.close()
-room_name = 'Uncle_House'
+room_name = 'Game_Entry'
 room_folder = 'Rooms'
 
 while True:
