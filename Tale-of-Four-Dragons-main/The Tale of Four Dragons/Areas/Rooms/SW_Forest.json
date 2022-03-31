@@ -1,0 +1,67 @@
+{
+    "flag":{
+        "name": "unclerescued",
+        "maintextif0": [
+            "The entrance to the forest. Trees reach the sky",
+            "above you, and the birds chirp happily.",
+            "But something feels... off..."
+        ],
+        "optionsif0": [
+            "North",
+            "South",
+            "East",
+            "---",
+            "---",
+            "Items"
+        ],
+        "maintextif1": [
+            "The entrance to the forest. Trees reach the sky",
+            "above you, and the birds chirp happily.",
+            "That eerie feeling has long faded."
+        ],
+        "optionsif1": [
+            "North",
+            "South",
+            "East",
+            "---",
+            "---",
+            "Items"
+        ]
+    },
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "North": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,-15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "W_Forest",
+        "NewRoomFolder": "Rooms"
+    },
+    "South": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Living_Room",
+        "NewRoomFolder": "Rooms"
+    },
+    "East": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [15,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "S_Forest",
+        "NewRoomFolder": "Rooms"
+    }
+}

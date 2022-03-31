@@ -1,0 +1,51 @@
+{
+    "maintext": [
+        "The main corridor in your house.",
+        "Many doors for many occasions.",
+        "(If the occasion needs a kitchen or living room)"
+    ],
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "options": [
+        "East",
+        "South",
+        "Up",
+        "---",
+        "---",
+        "Items"
+    ],
+    "South": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "House_Kitchen",
+        "NewRoomFolder": "Rooms"
+    },
+    "East": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [15,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Living_Room",
+        "NewRoomFolder": "Rooms"
+    },
+    "Up": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [-30,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Upper_Hall",
+        "NewRoomFolder": "Rooms"
+    }
+}
