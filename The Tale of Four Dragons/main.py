@@ -247,8 +247,8 @@ def getplayerchoice(options = ['---','---','---','---','---','---']):
     global option, chosen, row, column
     op1text = c.create_text(40,625, fill='white',font = 'Times 20',text = options[0], anchor = 'nw')
     op2text = c.create_text(40,650, fill='white', font = 'Times 20', text = options[1], anchor = 'nw')
-    op3text = c.create_text(277.5, 625, fill='white',font='Times 20', text = options[2], anchor = 'n')
-    op4text = c.create_text(277.5, 650, fill='white', font = 'Times 20', text = options[3], anchor = 'n')
+    op3text = c.create_text(245, 625, fill='white',font='Times 20', text = options[2], anchor = 'nw')
+    op4text = c.create_text(245, 650, fill='white', font = 'Times 20', text = options[3], anchor = 'nw')
     op5text = c.create_text(545, 625, fill='white', font = 'Times 20', text = options[4], anchor = 'ne')
     op6text = c.create_text(545, 650, fill='white', font = 'Times 20', text = options[5], anchor = 'ne')
     cursor = c.create_image(10, 625, image = whitecursorgraphic, anchor = 'nw')
@@ -504,6 +504,7 @@ addtoinv('Health Potion - x 0')
 addtoinv('Magic Potion - x 0')
 oldlevel = 1
 
+###flags - add to this when a new flag is added###
 flags = {
     'whistlegot': 0,
     'knifegot': 0,
@@ -516,7 +517,8 @@ flags = {
     'desertpearlgot': 0,
     'skypearlgot': 0,
     'allpearlsgot': 0,
-    'swordcouragegot': 0
+    'swordcouragegot': 0,
+    'woodswordgot' : 0
     }
 
 file = open('Areas/Rooms/Game_Entry.json')
@@ -528,7 +530,7 @@ room_folder = 'Rooms'
 while True:
     if room_folder == 'Rooms':
         try:
-           if flags['swordcouragegot'] == 1 and ('Pearls' in room['flag']['optionsif1']):
+           if flags['swordcouragegot'] == 1 and ('Pearls' in room['flag']['optionsif1']) and room_name == 'Forest_Clearing':
                 room['flag']['optionsif1'][4] = '---'
                 
         except:
@@ -585,7 +587,7 @@ while True:
             try:
                 enemy_encounter(room[choice]['forcedencounter'])
             except:
-                h = 0/0
+                pass
                     
             move_player(room[choice]['move1'][0],room[choice]['move1'][1],room[choice]['move1'][2],room[choice]['move1'][3])
             if room[choice]['move2'][0] != 'None':
