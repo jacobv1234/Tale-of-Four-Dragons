@@ -1,4 +1,5 @@
 ##startup##
+from operator import xor
 from tkinter import *
 from tkinter import PhotoImage
 from time import sleep
@@ -162,11 +163,11 @@ playerboatimg = PhotoImage(file = 'Graphics/Player_boat.gif')
 playerballoonimg = PhotoImage(file = 'Graphics/Player_balloon.gif')
 playertornadoimg = PhotoImage(file = 'Graphics/Player_tornado.gif')
 playergraphic = c.create_image(165,285,image = playergroundimg, anchor = 'nw')
-def move_player(x,y,steps = 30,secs = 1):
-    movex = x / steps
-    movey = y / steps
-    delay = secs / steps
-    for i in range(steps):
+def move_player(values = []):#values contains x, y, steps, seconds, in that order
+    movex = values[0] / values[2]
+    movey = values[1] / values[2]
+    delay = values[3] / values[2]
+    for i in range(values[2]):
         c.move(playergraphic,movex,movey)
         window.update()
         sleep(delay)
@@ -202,6 +203,7 @@ def update_stats():
 
 ##inventory##
 inventory = []
+invtexts = []
 spells = []
 spellcosts = []
 weapons = []
@@ -209,7 +211,7 @@ weapons = []
 def addtoinv(item):
     if item not in inventory:
         inventory.append(item)
-        c.create_text(650, (len(inventory)*30)+10, fill = 'white', font = 'Times 10', text = item, anchor = 'n')
+        invtexts.append(c.create_text(650, (len(inventory)*30)+10, fill = 'white', font = 'Times 10', text = item, anchor = 'n'))
         update_stats()
     else:
         popup('You already have this!')
@@ -589,11 +591,11 @@ while True:
             except:
                 pass
                     
-            move_player(room[choice]['move1'][0],room[choice]['move1'][1],room[choice]['move1'][2],room[choice]['move1'][3])
+            move_player(room[choice]['move1'])
             if room[choice]['move2'][0] != 'None':
-                move_player(room[choice]['move2'][0],room[choice]['move2'][1],room[choice]['move2'][2],room[choice]['move2'][3])
+                move_player(room[choice]['move2'])
             if room[choice]['move3'][0] != 'None':
-                move_player(room[choice]['move3'][0],room[choice]['move3'][1],room[choice]['move3'][2],room[choice]['move3'][3])
+                move_player(room[choice]['move3'])
 
             if room[choice]['endgraphicswap'] == 'Player':
                 change_player_graphic(playergroundimg)
@@ -640,3 +642,88 @@ while True:
         chosen = ''
         row = 0
         column = 0
+    
+    elif room_folder == 'Shops':
+        done_shopping = False
+        while not done_shopping:
+            shop_stock = room['stock']
+            for i in range(6):
+                item = shop_stock[i]
+                if item == '---' or item == 'Exit':
+                    continue
+                try:
+                    if flags[room[item]['flagneeded']] == 1:
+                        shop_stock[i] = '---'
+                except:
+                    pass
+
+            chatbox(room['welcometext'])
+            choice = getplayerchoice(shop_stock)
+            option = 0
+            chosen = ''
+            row = 0
+            column = 0
+
+            if choice == 'Exit':
+                popup(room['Exit']['byepopup'])
+                move_player(room['Exit']['move1'])
+                if room['Exit']['move2'] != 'None':
+                    move_player(room['Exit']['move2'])
+                room_name = room[choice]['NewRoom']
+                room_folder = room[choice]['NewRoomFolder']
+                file = open('Areas/' + room_folder + '/' + room_name + '.json')
+                room = json.load(file)
+                file.close()
+                done_shopping = True
+
+            else:
+                chatbox(room[choice]['description'])
+                cost = room[choice]['cost']
+                buytext = 'Buy - ' + str(cost) + ' Gold'
+                buyornot = getplayerchoice([buytext, 'Back','---','---','---','---'])
+                option = 0
+                chosen = ''
+                row = 0
+                column = 0
+
+                if buyornot == buytext:
+                    if player.money < cost:
+                        popup('You can\'t afford that!')
+
+                    else:
+                        popup('You got the ' + room[choice]['item'] + '!')
+                        player.spendmoney(room[choice]['cost'])
+
+                        if room[choice]['section'] == "Potions":
+                            if room[choice]['item'] == 'Health Potion':
+                                if inventory[0][-1] != '5':
+                                    newnumberofpotions = str(int(inventory[0][-1])+1)
+                                    inventory[0] = 'Health Potion - x ' + newnumberofpotions
+                                    c.itemconfig(invtexts[0],text=inventory[0])
+                                else:
+                                    popup('But you can\'t hold any more...')
+                                    popup('Keep your money.')
+                                    player.addmoney(room[choice]['cost'])
+
+                            else:
+                                if inventory[1][-1] != '5':
+                                    newnumberofpotions = str(int(inventory[1][-1])+1)
+                                    inventory[1] = 'Magic Potion - x ' + newnumberofpotions
+                                    c.itemconfig(invtexts[1],text=inventory[1])
+                                else:
+                                    popup('But you can\'t hold any more...')
+                                    popup('Keep your money.')
+                                    player.addmoney(room[choice]['cost'])
+
+                        elif room[choice]['section'] == 'Weapons':
+                            addtoweapons(room[choice]['item'])
+                            flags[room[choice]['flagset']] = 1
+                        
+                        elif room[choice]['section'] == 'Pearls':
+                            flags[room_name.lower()+'pearlgot'] = 1
+                            addpearl(room[choice]['pearlid'])
+                            if flags['forestpearlgot'] == 1 and flags['fieldpearlgot'] == 1 and flags['mountainpearlgot'] == 1 and flags['oceanpearlgot'] == 1 and flags['desertpearlgot'] == 1 and flags['skypearlgot'] == 1:
+                                flags['allpearlsgot'] = 1
+                                popup('That\'s all of the pearls!')
+            update_stats()
+

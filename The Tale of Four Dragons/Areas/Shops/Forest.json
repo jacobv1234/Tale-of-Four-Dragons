@@ -15,7 +15,7 @@
     "H. Potion" : {
         "flagneeded" : "None",
         "description" : [
-            "Ah, a health potion",
+            "Ah, a health potion.",
             "Drink one of those to heal 50 HP.",
             "You can only hold up to five, though."
         ],
@@ -45,6 +45,8 @@
         ],
         "cost" : 50,
         "item" : "Forest Pearl",
+        "section" : "Pearls",
+        "pearlid" : 1,
         "flagset" : "forestpearlgot"
     },
     "Wood Sword" : {
@@ -56,9 +58,11 @@
         ],
         "cost" : 30,
         "item" : "Wood Sword",
+        "section" : "Weapons",
         "flagset" : "woodswordgot"
     },
     "Exit" : {
+        "byepopup" : "See ya round, kid.",
         "move1" : [15,0,15,1],
         "move2" : "None",
         "NewRoom": "W_Forest",
