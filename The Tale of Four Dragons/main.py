@@ -520,7 +520,8 @@ flags = {
     'skypearlgot': 0,
     'allpearlsgot': 0,
     'swordcouragegot': 0,
-    'woodswordgot' : 0
+    'woodswordgot' : 0,
+    'gotocredits' : 1
     }
 
 file = open('Areas/Rooms/Game_Entry.json')
@@ -615,6 +616,8 @@ while True:
             file = open('Areas/' + room_folder + '/' + room_name + '.json')
             room = json.load(file)
             file.close()
+            if flags['gotocredits'] == 1:
+                break
             
         else:
             whistleused = False
@@ -727,3 +730,18 @@ while True:
                                 popup('That\'s all of the pearls!')
             update_stats()
 
+##credits##
+creditbox = c.create_rectangle(150,-540,555,0,fill='black',outline = 'white')
+for i in range(54):
+    c.move(creditbox, 0, 10)
+    sleep(0.01)
+    window.update()
+c.create_text(352.5,50,fill='white',font='Times 25', text='The Tale of Four Dragons')
+c.create_text(352.5,150,fill='white',font='Times 20', text='Game by')
+c.create_text(352.5,190,fill='white',font='Times 20', text='Jacob Vincent')
+c.create_text(352.5,250,fill='white',font='Times 20', text='GFX by')
+c.create_text(352.5,290,fill='white',font='Times 20', text='WaspVentMan')
+c.create_text(352.5,360,fill='white',font='Times 30', text='Thanks for playing!')
+window.update()
+sleep(100)
+window.destroy()

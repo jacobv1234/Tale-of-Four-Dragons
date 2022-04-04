@@ -1,0 +1,32 @@
+{
+    "maintext": [
+        "Congratulations!",
+        "You have finished the demo of The Tale of Four Dragons.",
+        "Make sure to check the GitHub page regularly for more news."
+    ],
+
+    "Enemies": {
+        "Chance": 0,
+        "Enemy": "None"
+    },
+
+    "options": [
+        "Credits",
+        "---",
+        "---",
+        "---",
+        "---",
+        "---"
+    ],
+    "Credits": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,0,1,0.5],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Forest_Exit",
+        "NewRoomFolder": "Rooms",
+        "flagtoupdate" : "gotocredits"
+    }
+}
