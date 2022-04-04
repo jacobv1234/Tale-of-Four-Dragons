@@ -1,0 +1,8 @@
+NOTE - this game requires Python to play. This can be downloaded from https://www.python.org/downloads/
+
+Within this folder you will see 'main' - a .py file to run to play.
+
+To create a shortcut:
+1) right-click main.py and select 'Create Shortcut' - name it 'The Tale of Four Dragons'
+2) right-click the shorcut and go to properties
+3) in 'change icon' navigate to the game's folder and select 'icon.ico' to use.
