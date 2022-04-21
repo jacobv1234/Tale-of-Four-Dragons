@@ -521,7 +521,7 @@ flags = {
     'allpearlsgot': 0,
     'swordcouragegot': 0,
     'woodswordgot' : 0,
-    'gotocredits' : 1
+    'gotocredits' : 0
     }
 
 file = open('Areas/Rooms/Game_Entry.json')
