@@ -1,10 +1,6 @@
 ##This file contains the class data for the player##
 
-from tkinter import *
-from tkinter import PhotoImage
-from time import sleep
-
-leveluprequirements = [50,200,400,600,750,1000,1500,2000,3000,10000] #10000 exists for list index
+leveluprequirements = [50,200,400,600,750,1000,1500,2000,3000,99999999999999999999999999999999999999999999999] #last one exists for list index
 
 class Player():
     def __init__(self, hp = 100, maxhp = 100, magic = 100, maxmagic = 100, weapon = 'None', exp = 0, level = 1, money = 0):

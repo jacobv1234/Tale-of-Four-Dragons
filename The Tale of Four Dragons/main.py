@@ -86,8 +86,9 @@ c.bind_all('<Key>',moveblackcursor)
 while True:
     window.update()
     if selected == 'Continue':
-        window.destroy() #test
-        print('You selected ' + selected) #test
+        file = open('SaveData/other.txt','r')
+        othercontents = file.read().split(';')
+        name = othercontents.pop(0)
     elif selected == 'New Game':
         c.itemconfig(newgametext, state = 'hidden')
         c.itemconfig(continuetext, state = 'hidden')
@@ -500,8 +501,7 @@ def enemy_encounter(enemy):
     update_stats()
     c.delete(background)
             
-                    
-##mainloop##
+##setup##
 addtoinv('Health Potion - x 0')
 addtoinv('Magic Potion - x 0')
 oldlevel = 1
@@ -529,6 +529,65 @@ room = json.load(file)
 file.close()
 room_name = 'Game_Entry'
 room_folder = 'Rooms'
+
+##savedata stuff
+def savegame():
+    file = open('SaveData/flags.txt','w')
+    for item in list(flags.values()):
+        file.write(str(item) + ';')
+    file.close()
+    file = open('SaveData/inventory.txt','w')
+    for item in inventory:
+        file.write(str(item) + ';')
+    file.close()
+    file = open('SaveData/weapons.txt','w')
+    for item in weapons:
+        file.write(str(item) + ';')
+    file.close()
+    file = open('SaveData/spells.txt','w')
+    for i in range(len(spells)):
+        file.write(str(spells[i]) + ';' + spellcosts[i] + ';')
+    file.close()
+    file = open('SaveData/other.txt','w')
+    file.write(name + ';' + room_name + ';' + player.hp + ';'+player.maxhp+';'+player.magic+';'+player.maxmagic+';'+player.weapon+';'+player.exp+';'+player.level+';'+player.money)
+    file.close()
+
+def loadsave():
+    global player,inventory,spellcosts,spells,weapons,flags,othercontents,room_name
+    file = open('SaveData/inventory.txt','r')
+    contents = file.read().split(';')
+    for item in contents:
+        addtoinv(item)
+    file.close()
+    file = open('SaveData/weapons.txt','r')
+    contents = file.read().split(';')
+    for item in contents:
+        addtoweapons(item)
+    file.close()
+    file = open('SaveData/spells','r')
+    contents = file.read().split(';')
+    for i in range(0,len(contents),2):
+        addtospells(i,i+1)
+    file.close()
+    file = open('SaveData/flags.txt','r')
+    contents = file.read().split(';')
+    for i in range(len(contents)):
+        flags[i] = contents[i]
+    file.close()
+    room_name = othercontents.pop(0)
+    player.hp = othercontents.pop(0)
+    player.maxhp = othercontents.pop(0)
+    player.magic = othercontents.pop(0)
+    player.maxmagic = othercontents.pop(0)
+    player.weapon = othercontents.pop(0)
+    player.exp = othercontents.pop(0)
+    player.level = othercontents.pop(0)
+    player.money = othercontents.pop(0)
+    update_stats()
+
+
+    
+
 
 while True:
     if room_folder == 'Rooms':
@@ -610,6 +669,8 @@ while True:
                 player.magicrestore(999999)
                 popup('Your HP and magic are maxed out.')
                 update_stats()
+                savegame()
+                popup('The game was saved.')
 
             room_name = room[choice]['NewRoom']
             room_folder = room[choice]['NewRoomFolder']
