@@ -31,7 +31,7 @@
     "Rest": {
         "popup": "You rest for a few hours.",
         "startgraphicswap": "None",
-        "move1": [0,0,1,2],
+        "move1": [0,0,1,0.1],
         "move2": ["None"],
         "move3": ["None"],
         "endgraphicswap": "None",

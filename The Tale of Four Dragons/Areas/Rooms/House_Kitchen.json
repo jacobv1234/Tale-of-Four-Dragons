@@ -50,7 +50,7 @@
         "maintextupdate": [
             "A steak knife makes a useful basic dagger.",
             "If it can stab a cow, it can stab a goblin.",
-            "It's not much, but it's better than just punching."
+            "Make sure to equip it in the Items menu."
         ],
         "flagtoupdate": "knifegot",
         "additem": "Knife",
