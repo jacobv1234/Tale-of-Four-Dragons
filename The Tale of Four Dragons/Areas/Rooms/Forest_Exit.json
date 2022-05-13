@@ -1,32 +1,84 @@
 {
-    "maintext": [
-        "Congratulations!",
-        "You have finished the demo of The Tale of Four Dragons.",
-        "Make sure to check the GitHub page regularly for more news."
-    ],
+    "flag" : {
+        "name" : "oldmanspokento",
+        "maintextif0": [
+            "An overwhelming feeling of adventure washes over you.",
+            "There's a bench nearby to rest if you wish.",
+            "An old man sat there wishes to talk to you."
+        ],
 
-    "Enemies": {
-        "Chance": 0,
-        "Enemy": "None"
+        "optionsif0": [
+            "North",
+            "South",
+            "Old Man",
+            "Rest",
+            "---",
+            "Items"
+        ],
+
+        "maintextif1": [
+            "Forest to the south, fields to the north.",
+            "There's a bench nearby to rest if you wish.",
+            "Continue your adventure when you are ready."
+        ],
+
+        "optionsif1": [
+            "North",
+            "South",
+            "Rest",
+            "---",
+            "---",
+            "Items"
+        ]
     },
-
-    "options": [
-        "Credits",
-        "---",
-        "---",
-        "---",
-        "---",
-        "---"
-    ],
-    "Credits": {
+    "Enemies": {
+            "Chance": 0,
+            "Enemy": "None"
+    },
+    "North": {
         "popup": "None",
         "startgraphicswap": "None",
-        "move1": [0,0,1,0.5],
+        "move1": [0,-15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Waypoint_Sign",
+        "NewRoomFolder": "Rooms"
+    },
+    "South": {
+        "popup": "None",
+        "startgraphicswap": "None",
+        "move1": [0,15,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "NW_Forest",
+        "NewRoomFolder": "Rooms"
+    },
+    "Rest": {
+        "popup": "You rest for a few hours.",
+        "startgraphicswap": "None",
+        "move1": [0,0,1,0.1],
         "move2": ["None"],
         "move3": ["None"],
         "endgraphicswap": "None",
         "NewRoom": "Forest_Exit",
-        "NewRoomFolder": "Rooms",
-        "flagtoupdate" : "gotocredits"
+        "NewRoomFolder": "Rooms"
+    },
+    "Old Man" : {
+        "popup": "You talk to the old man...",
+        "maintextupdate": [
+            "\"You have to help me! I've just escaped from",
+            "the castle prison, but there's still someone trapped.",
+            "He looked like you, but older. Is he your father?\""
+        ],
+        "flagtoupdate": "oldmanspokento",
+        "startgraphicswap": "None",
+        "move1": [0,0,0,0.5],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "Forest_Exit",
+        "NewRoomFolder": "Rooms"
     }
 }

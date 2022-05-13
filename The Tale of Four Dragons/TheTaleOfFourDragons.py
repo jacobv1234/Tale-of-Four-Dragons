@@ -529,7 +529,8 @@ flags = {
     'firegemgot' : 0,
     'stormgemgot' : 0,
     'allgemsgot' : 0,
-    'crowngot' : 0
+    'crowngot' : 0,
+    'oldmanspokento' : 0
     }
 
 room_name = 'Game_Entry'
