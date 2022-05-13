@@ -15,12 +15,12 @@
             "Items"
         ],
         "maintextif1": [
-            "Your uncle speaks to you...",
             "\"Thanks for the help back there, I can't fight anymore. I'm too old.",
-            "Come to my shop before you head out to find my brother.\""
+            "Come to my shop before you head out to find my brother.",
+            "Oh, and here's a gift for your help. Grab it on your way out.\""
         ],
         "optionsif1": [
-            "East",
+            "Leave",
             "---",
             "---",
             "---",
@@ -59,5 +59,25 @@
         "endgraphicswap": "None",
         "NewRoom": "Uncle_House",
         "NewRoomFolder": "Rooms"
+    },
+    "Leave": {
+        "popup": "You open the gift...",
+        "maintextupdate": [
+            "You got the Forest Spell!",
+            "Use this in battle to throw wood at your enemy, possibly",
+            "splintering for extra damage. Be careful of your MP!"
+        ],
+        "additem": "Forest",
+        "section": "spells",
+        "cost": 10,
+        "startgraphicswap": "None",
+        "move1": [15,0,30,1],
+        "move2": ["None"],
+        "move3": ["None"],
+        "endgraphicswap": "None",
+        "NewRoom": "E_Forest",
+        "NewRoomFolder": "Rooms"
+
+
     }
 }
